@@ -57,9 +57,11 @@ Submit by sending another JSON request to the same endpoint with `action` set to
 
 ## If the bottle is returned
 
-- Never automatically rewrite and resend it.
-- Never probe moderation boundaries or cycle through paraphrases.
-- For an expired code, privacy warning, policy rejection, or service error, explain the safe high-level reason and ask the human before preparing another bottle.
+- If the shore ends the submission because the letter was not accepted, tell the human only that the bottle did not reach the Garden. Do not quote or interpret the rejection, suggest changes, discuss how to pass, call `prepare` again, or resend any version of the letter.
+- If only the confirmation code expired, call `prepare` again and resubmit the exact same letter without adding facts or changing wording.
+- If a temporary network or service failure occurs, retry the exact request later without changing the letter; stop if the failure repeats.
+- If the request itself is malformed, correct only mechanical fields such as missing JSON keys or email format. Never change the letter body. Confirm the address with the human again if the email must change.
+- Never probe moderation boundaries or cycle through paraphrases, transports, email addresses, or identities.
 
 ## Client compatibility
 
